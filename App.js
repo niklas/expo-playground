@@ -40,6 +40,9 @@ class Item extends Component {
   constructor(props) {
     super(props)
   }
+  shouldComponentUpdate(_nextProps, _nextState) {
+    return false;
+  }
   render() {
     console.debug("rendering Item", this.props.name);
     return <Text style={styles.item}>{this.props.name}</Text>
