@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 
 export default function App() {
@@ -36,9 +36,14 @@ const newItem = (id) => {
   return {id: String(id), name: "John"}
 }
 
-const Item = ({name}) => {
-  console.debug("rendering Item", name);
-  return <Text style={styles.item}>{name}</Text>
+class Item extends Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    console.debug("rendering Item", this.props.name);
+    return <Text style={styles.item}>{this.props.name}</Text>
+  }
 }
 
 const renderItem = ({item}) => (
