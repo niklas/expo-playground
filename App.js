@@ -1,9 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 
 export default function App() {
-  const [items, setItem] = useState(initialItems)
+  const [items, setItems] = useState(initialItems)
+  const [lastId, setLastId] = useState(3)
+
+  const appendItem = () => {
+    console.log("====== Button pressed")
+    const newId = lastId + 1
+    setItems([...items, newItem(newId)])
+    setLastId(newId)
+  }
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
@@ -11,6 +19,7 @@ export default function App() {
         data={items}
         renderItem={renderItem}
       />
+      <Button title="call john" onPress={appendItem}/>
       <StatusBar style="auto" />
     </View>
   );
@@ -21,6 +30,10 @@ const initialItems = [
   {id: "2", name:"Paul" },
   {id: "3", name:"Mary" },
 ]
+
+const newItem = (id) => {
+  return {id: String(id), name: "John"}
+}
 
 const Item = ({name}) => {
   console.debug("rendering Item", name);
