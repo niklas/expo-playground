@@ -9,7 +9,7 @@ export default function App() {
   const appendItem = () => {
     console.log("====== Button pressed")
     const newId = lastId + 1
-    setItems([...items, newItem(newId)])
+    items.push(newItem(newId))
     setLastId(newId)
   }
   return (
@@ -18,6 +18,7 @@ export default function App() {
       <FlatList
         data={items}
         renderItem={renderItem}
+        extraData={lastId}
       />
       <Button title="call john" onPress={appendItem}/>
       <StatusBar style="auto" />
